@@ -55,8 +55,8 @@ import java.util.Comparator;
 
 public class Main {
 
-	public static void main(String[] args) {
-	    Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
       int noOfTimes = sc.nextInt();
       for(int k=0;k<noOfTimes;k++) {
         int noOfItems = sc.nextInt();
@@ -74,34 +74,38 @@ public class Main {
         
         Map<String, Integer> sortedByKeys = sortByKeys(table);
         Map<String, Integer> sortedByValues = sortByValues(sortedByKeys);
-        System.out.println(sortedByValues);
+        Object[] values = sortedByValues.keySet().toArray();
+        System.out.println(values.length);
+        for(int l = 0 ; l<values.length;l++) {
+          System.out.println(values[l] + " " + sortedByValues.get(values[l]));
+        }
       }
-	}
-	
-	public static <K extends Comparable, V extends Comparable> Map<K, V> sortByKeys(Map<K, V> map) {
-		List<K> keys = new LinkedList<K>(map.keySet());
-		Collections.sort(keys);
-		Map<K, V> sortedMap = new LinkedHashMap<K, V>();
-		for(K key: keys) {
-			sortedMap.put(key, map.get(key));
-		}
-		return sortedMap;
-	}
-	
-	public static <K extends Comparable, V extends Comparable> Map<K,V> sortByValues(Map<K,V> map) {
-		List <Map.Entry<K, V>> entries = new LinkedList<Map.Entry<K, V>>(map.entrySet());
-		
-		Collections.sort(entries, new Comparator<Map.Entry<K, V>>() {
-			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
-				return o2.getValue().compareTo(o1.getValue());
-			}
-		});
-		
-		Map<K, V> sortedMap = new LinkedHashMap<K, V>();
-		for(Map.Entry<K, V> entry: entries) {
-			sortedMap.put(entry.getKey(), entry.getValue());
-		}
-	
-		return sortedMap;
-	}
+    }
+    
+    public static <K extends Comparable, V extends Comparable> Map<K, V> sortByKeys(Map<K, V> map) {
+        List<K> keys = new LinkedList<K>(map.keySet());
+        Collections.sort(keys);
+        Map<K, V> sortedMap = new LinkedHashMap<K, V>();
+        for(K key: keys) {
+            sortedMap.put(key, map.get(key));
+        }
+        return sortedMap;
+    }
+    
+    public static <K extends Comparable, V extends Comparable> Map<K,V> sortByValues(Map<K,V> map) {
+        List <Map.Entry<K, V>> entries = new LinkedList<Map.Entry<K, V>>(map.entrySet());
+        
+        Collections.sort(entries, new Comparator<Map.Entry<K, V>>() {
+            public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
+        
+        Map<K, V> sortedMap = new LinkedHashMap<K, V>();
+        for(Map.Entry<K, V> entry: entries) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+    
+        return sortedMap;
+    }
 }
