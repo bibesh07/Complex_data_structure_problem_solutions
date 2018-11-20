@@ -42,7 +42,6 @@ furby 5
 funfun 1
 funfungame 1
 */
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -58,23 +57,25 @@ public class Main {
 
 	public static void main(String[] args) {
 	    Scanner sc = new Scanner(System.in);
-	    int noOfItems = sc.nextInt();
-	    Map<String, Integer> table = new HashMap<String, Integer>();
+      int noOfTimes = sc.nextInt();
+      for(int k=0;k<noOfTimes;k++) {
+        int noOfItems = sc.nextInt();
+        Map<String, Integer> table = new HashMap<String, Integer>();
 
-	    for(int i=0;i<noOfItems;i++) {
-	      String itemName = sc.next();
-	      int quantity = sc.nextInt();
-	      if(table.containsKey(itemName)) {
-	        table.put(itemName, table.getOrDefault(itemName, 0) + quantity);
-	      } else {
-	        table.put(itemName, quantity);
-	      }
-	    }
-	    
-	    Map<String, Integer> sortedByKeys = sortByKeys(table);
-	    Map<String, Integer> sortedByValues = sortByValues(sortedByKeys);
-	    System.out.println("Sorted HashMap by Keys" +  sortedByKeys);
-	    System.out.println("Sorted HashMap by Values" +  sortedByValues);
+        for(int i=0;i<noOfItems;i++) {
+          String itemName = sc.next();
+          int quantity = sc.nextInt();
+          if(table.containsKey(itemName)) {
+            table.put(itemName, table.getOrDefault(itemName, 0) + quantity);
+          } else {
+            table.put(itemName, quantity);
+          }
+        }
+        
+        Map<String, Integer> sortedByKeys = sortByKeys(table);
+        Map<String, Integer> sortedByValues = sortByValues(sortedByKeys);
+        System.out.println(sortedByValues);
+      }
 	}
 	
 	public static <K extends Comparable, V extends Comparable> Map<K, V> sortByKeys(Map<K, V> map) {
